@@ -1,3 +1,6 @@
+#ifndef BASE_H
+#define BASE_H
+
 #include <stdint.h>
 
 typedef int8_t i8;
@@ -21,3 +24,5 @@ typedef double f64;
 
 #define MIN(a, b) (((a) < (b)) ? (a) : (b))
 #define MAX(a, b) (((a) > (b)) ? (a) : (b))
+
+#endif
