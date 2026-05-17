@@ -18,11 +18,18 @@ typedef i32 b32;
 typedef float f32;
 typedef double f64;
 
+typedef struct {
+  u8 *str;
+  u64 size;
+} string8;
+
 #define KiB(n) ((u64)(n) << 10)
 #define MiB(n) ((u64)(n) << 20)
 #define GiB(n) ((u64)(n) << 30)
 
 #define MIN(a, b) (((a) < (b)) ? (a) : (b))
 #define MAX(a, b) (((a) > (b)) ? (a) : (b))
+
+#define STR8_LIT(s) (string8){(u8 *)(s), sizeof(s) - 1}
 
 #endif
