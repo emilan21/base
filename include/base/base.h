@@ -31,5 +31,8 @@ typedef struct {
 #define MAX(a, b) (((a) > (b)) ? (a) : (b))
 
 #define STR8_LIT(s) (string8){(u8 *)(s), sizeof(s) - 1}
+#define STR8_FMT(s8) (int)(s8).size, (s8).str
+
+string8 str8_substr(string8 str, u64 start, u64 end);
 
 #endif
