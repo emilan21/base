@@ -1,8 +1,40 @@
-#include "base/base.h"
+#include <base/base.h>
 
-string8 str8_substr(string8 str, u64 start, u64 end) {
-  end = MIN(end, str.size);
-  start = MIN(start, end);
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-  return (string8){str.str + start, end - start};
+void base_log(const char *fmt, ...) {
+  va_list args;
+  va_start(args, fmt);
+
+  vfprintf(stdout, fmt, args);
+  fprintf(stdout, "\n");
+
+  va_end(args);
+}
+
+void base_log_error(const char *fmt, ...) {
+  va_list args;
+  va_start(args, fmt);
+
+  fprintf(stderr, "error: ");
+  vfprintf(stderr, fmt, args);
+  fprintf(stderr, "\n");
+
+  va_end(args);
+}
+
+void base_panic(const char *file, u32 line, const char *fmt, ...) {
+  va_list args;
+  va_start(args, fmt);
+
+  fprintf(stderr, "panic: ");
+  vfprintf(stderr, fmt, args);
+  fprintf(stderr, "\n");
+  fprintf(stderr, "at %s:%d\n", file, line);
+
+  va_end(args);
+
+  abort();
 }
